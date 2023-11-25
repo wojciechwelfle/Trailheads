@@ -8,13 +8,14 @@ public class AnimalLocator {
     request.setMethod('GET');
     HttpResponse response = http.send(request);
 
+    String result = '';
     if (response.getStatusCode() == 200) {
       Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(
         response.getBody()
       );
       Map<String, Object> animal = (Map<String, Object>) results.get('animal');
-      return (String) animal.get('name');
+      result = (String) animal.get('name');
     }
-    return null;
+    return result;
   }
 }
